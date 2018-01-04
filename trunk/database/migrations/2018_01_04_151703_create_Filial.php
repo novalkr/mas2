@@ -16,6 +16,11 @@ class CreateFilial extends Migration
         Schema::create('Filial', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string( 'guid' , 100 );
+            $table->string( 'Name' ,  100 );
+            $table->string( 'Adress' ,  100 );
+            $table->dateTime( 'DateBegin' );
+            $table->dateTime( 'DateEnd' )->nullable();
         });
     }
 
