@@ -17,11 +17,11 @@ class CreatePrimer extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string( 'guid' , 100 );
-            $table->string( 'fk_Worker' ,  200 );           
+            $table->string( 'fk_Worker' ,  200 );
             $table->string( 'fk_Role' , 100 );
-            $table->string( 'fk_Filial' ,  200 );           
-            $table->dateTime( 'DateBegin' ); 
-            $table->dateTime( 'DateEnd' )->nullable(); 
+            $table->string( 'fk_Filial' ,  200 );
+            $table->dateTime( 'DateBegin' );
+            $table->dateTime( 'DateEnd' )->nullable();
         });
     }
 

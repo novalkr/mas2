@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="app-7">
+            <ol>
+                <!--
+                  Теперь мы можем передать каждому компоненту todo объект
+                  с информацией о задаче, который будет динамически меняться.
+                  Мы также определяем для каждого компонента "key",
+                  значение которого будет объяснено далее в руководстве.
+                -->
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                >
+                </todo-item>
+            </ol>
+        </div>
+
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- мы теперь не можем обновить obj.foo! -->
+  <button @click="obj.foo = 'baz'">Изменить</button>
+</div>
+
+        
+<div id="todo-list-example">
+    <input
+        v-model="newTodoText"
+        v-on:keyup.enter="addNewTodo"
+        placeholder="Добавить todo"
+    >
+    <ul>
+        <li
+            is="todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:title="todo.title"
+            v-on:remove="todos.splice(index, 1)"
+        ></li>
+    </ul>
+</div>
+        
+        <script>
+            Vue.component('todo-item', {
+              props: ['todo'],
+              template: '<li>{{ todo.text }}</li>'
+            })
+
+            var app7 = new Vue({
+              el: '#app-7',
+              data: {
+                groceryList: [
+                  { id: 0, text: 'Овощи' },
+                  { id: 1, text: 'Сыр' },
+                  { id: 2, text: 'Что там ещё люди едят?' }
+                ]
+              }
+            });
+
+var obj = {
+  foo: 'bar'
+}
+
+//Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+});
+
+
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      {
+        id: 1,
+        title: 'Вымыть посуду'
+      },
+      {
+        id: 2,
+        title: 'Вынести мусор'
+      },
+      {
+        id: 3,
+        title: 'Подстричь газон'
+      }
+    ],
+    nextTodoId: 4
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push({
+        id: this.nextTodoId++,
+        title: this.newTodoText
+      })
+      this.newTodoText = ''
+    }
+  }
+})
+        </script>
+
+    </body>
+</html>

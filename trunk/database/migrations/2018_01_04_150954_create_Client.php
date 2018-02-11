@@ -17,10 +17,10 @@ class CreateClient extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string( 'guid' , 100 );
-            $table->string( 'FIO' , 200 );            
-            $table->string( 'Adress' , 200 );            
-            $table->string( 'Telefon' , 20 );            
-            $table->string( 'fk_users' , 100 );            
+            $table->string( 'FIO' , 200 );
+            $table->string( 'Adress' , 200 );
+            $table->string( 'Telefon' , 20 );
+            $table->string( 'fk_users' , 100 );
         });
     }
 

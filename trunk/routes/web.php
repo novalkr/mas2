@@ -11,6 +11,20 @@
 |
 */
 
+/**
+ * если не пашет поднять модуль перенаправлений
+ * # a2enmod rewrite
+ */
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post( 'usluga/{id}' , "UslugaController@update"  );//->where('id', '[A-Za-z-]+');
+Route::get( 'usluga/{id}' , "UslugaController@edit"  );//->where('id', '[A-Za-z-]+');
+Route::any( 'usluga' , "UslugaController@index" );
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

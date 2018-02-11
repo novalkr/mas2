@@ -17,12 +17,12 @@ class CreateJurnal extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string( 'guid' , 100 );
-            $table->dateTime( 'DateInit' ); 
+            $table->dateTime( 'DateInit' );
             $table->integer( 'TimeInit' );
-            $table->dateTime( 'DateBegin' )->nullable(); 
+            $table->dateTime( 'DateBegin' )->nullable();
             $table->integer( 'TimeBegin' )->nullable();
-            $table->string( 'fk_Client' , 100 );             
-            $table->string( 'fk_Filial' , 100 );             
+            $table->string( 'fk_Client' , 100 );
+            $table->string( 'fk_Filial' , 100 );
         });
     }
 

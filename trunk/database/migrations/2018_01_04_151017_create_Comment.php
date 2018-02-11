@@ -17,10 +17,10 @@ class CreateComment extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string( 'guid' , 100 );
-            $table->string( 'Text' , 500 ); 
-            $table->string( 'fk_Worker' , 100 );             
-            $table->dateTime( 'Date' ); 
-            $table->string( 'fk_Jurnal' , 100 ); 
+            $table->string( 'Text' , 500 );
+            $table->string( 'fk_Worker' , 100 );
+            $table->dateTime( 'Date' );
+            $table->string( 'fk_Jurnal' , 100 );
         });
     }
 

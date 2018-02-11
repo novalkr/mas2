@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/vue.js"></script>    
+    </head>
+    <body>
+        <div>TODO write content</div>
+<!--
+<div id="appp-1">
+    {{ '{'.'{ message }'.'}' }}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    Подержи курсор надо мной пару секунд,
+    чтобы увидеть динамически связанное значение title!
+  </span>
+</div>
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">
+     {{ '{'.'{ todo.text }'.'}' }}
+    </li>
+  </ol>
+</div>
+-->
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Обратить порядок букв в сообщении</button>
+</div>
+    
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>    
+
+
+        <div id="app-7">
+            <ol>
+                <!--
+                  Теперь мы можем передать каждому компоненту todo объект
+                  с информацией о задаче, который будет динамически меняться.
+                  Мы также определяем для каждого компонента "key",
+                  значение которого будет объяснено далее в руководстве.
+                -->
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                >
+                </todo-item>
+            </ol>
+        </div>
+
+<div id="app">
+  <p>{{ obj.foo }}</p>
+  <!-- мы теперь не можем обновить obj.foo! -->
+  <button @click="obj.foo = 'baz'">Изменить</button>
+</div>
+
+<script>
+/*
+    var app4 = new Vue({
+      el: '#appp-1',
+      data: {
+       message: 'Hello Vue!'
+      }
+    });
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: 'Вы загрузили эту страницу в: ' + new Date().toLocaleString()
+      }
+    });
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: 'Посадить дерево' },
+          { text: 'Построить дом' },
+          { text: 'Вырастить сына' }
+        ]
+      }
+    });
+*/
+console.log( 'подгрузка тыка' );
+var app5 = new Vue({
+    el: '#app-5',
+    data: {
+        message: 'Hello Vue.js! '
+    },
+    methods: {
+        reverseMessage: function () {
+            console.log( 'подгрузка тыка' );
+            this.message = this.message.split('').reverse().join('')
+        }
+    }
+});
+console.log( 'app5', app5 );
+
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
+
+            Vue.component('todo-item', {
+              props: ['todo'],
+              template: '<li>{{ todo.text }}</li>'
+            })
+
+            var app7 = new Vue({
+              el: '#app-7',
+              data: {
+                groceryList: [
+                  { id: 0, text: 'Овощи' },
+                  { id: 1, text: 'Сыр' },
+                  { id: 2, text: 'Что там ещё люди едят?' }
+                ]
+              }
+            });
+
+
+var obj = {
+  foo: 'bar'
+}
+
+//Object.freeze(obj)
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      obj
+    }
+  }
+});
+    
+
+</script>        
+    </body>
+</html>

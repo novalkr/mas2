@@ -17,8 +17,8 @@ class CreateDelo extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string( 'guid' , 100 );
-            $table->string( 'fk_Jurnal' , 100 );            
-            $table->string( 'fk_Usluga' , 100 );            
+            $table->string( 'fk_Jurnal' , 100 );
+            $table->string( 'fk_Usluga' , 100 );
         });
     }
 
