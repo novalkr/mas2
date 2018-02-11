@@ -27,11 +27,14 @@ class ModelLayer extends Model{
     }
     
     public function save( array $options = [] ){
+        
+        
         if ($this->exists) {
         }
         else{
             $guid = $this->generateId();
-            $this->setAttribute($this->getKeyName() , $guid);
+            $this->setAttribute($this->getKeyName() , $guid);                       
+            $this->setAttribute( 'DateBegin' , date('Y-m-d') );
         }
         return parent::save( $options  );
     }

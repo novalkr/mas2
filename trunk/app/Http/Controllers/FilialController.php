@@ -15,6 +15,9 @@ class FilialController extends Controller
     public function index()
     {
         //
+        $filialAll = \App\Model\Filial::all();
+        $data = array( 'filialAll' =>  $filialAll );
+        return view( 'filial.index' , $data );
     }
 
     /**
@@ -55,10 +58,18 @@ class FilialController extends Controller
      * @param  \App\Filial  $filial
      * @return \Illuminate\Http\Response
      */
-    public function edit(Filial $filial)
+    public function edit(\App\Model\Filial $filial , $id )
     {
         //
-    }
+        if( 'new' == $id ){
+            $filialOne = new \App\Model\Filial();
+            $filialOne->setAttribute( $filialOne->getKeyName() , 'new' );
+        }
+        else{
+            $filialOne = \App\Model\Filial::find(  $id   );
+        }
+        $data = array( 'filialOne' =>  $filialOne );
+        return view( 'filial.edit' , $data );     }
 
     /**
      * Update the specified resource in storage.
@@ -67,10 +78,37 @@ class FilialController extends Controller
      * @param  \App\Filial  $filial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Filial $filial)
+    public function update(Request $request, $id )
     {
         //
-    }
+        $errors = array();
+        $errors = $this->validate($request , array(
+            'Name' => 'required|max:50',
+            'Adress' => 'required|max:100',
+        ));
+
+        if( empty($errors) ){
+            //дергаем запись
+            if( 'new' == $id ){
+                $filialOne = new \App\Model\Filial();
+            }
+            else{
+                $filialOne = \App\Model\Filial::find(  $id   );
+            }
+            if( empty($filialOne) ){
+                $this->throwValidationException($request,  array( 'Нет записи' ) );
+            }
+
+            $post = $request->input();
+            $post =  $filialOne->parseData( $post );
+            //$filialOne->validSave( $post );
+            $filialOne->setFieldAll($post);
+            $filialOne->save();
+
+        }
+        //проверка данных
+        //запись данынх
+        return  redirect('/filial/'.$filialOne->getId() )->withInput( array( 'flash' => 'Сохранено' ) );    }
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +116,14 @@ class FilialController extends Controller
      * @param  \App\Filial  $filial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Filial $filial)
+    public function destroy(string $id)
     {
         //
+        $filialOne = \App\Model\Filial::find(  $id   );
+        if( empty($filialOne) ){
+            $this->throwValidationException($request,  array( 'Нет записи' ) );
+        }
+        $filialOne->delete();
+        return  redirect('/filial/'.$filialOne->getId() )->withInput( array( 'flash' => 'Сохранено' ) );
     }
 }
